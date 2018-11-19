@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS `address`(
+   `address_id` INT UNSIGNED AUTO_INCREMENT,
+   `uid` INT NOT NULL,
+   `consignee` VARCHAR(320) NOT NULL,
+   `tel` VARCHAR(320) NOT NULL,
+   `province` VARCHAR(320) NOT NULL,
+   `city` VARCHAR(320) NOT NULL,
+   `district` VARCHAR(320) NOT NULL,
+   `address` VARCHAR(320) NOT NULL,
+   PRIMARY KEY ( `address_id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+//consignee 收件人
+//district 区
+//address  详细地址
