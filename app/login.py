@@ -14,30 +14,34 @@ login = Blueprint('login',__name__)
 def getUid():
 
 
-    if request.method == 'POST':
-        p_openId = request.form.get('openId', None)
-        print(p_openId)
 
-        if not p_openId:
-            return json.dumps({'ERRORCODE':'0003'})#输入有误
+    p_openId = request.form.get('openId', None)
 
 
-        #goods = Goods().query.get(goods_id=p_id)
-        user = db.session.query(User).filter_by(openid=p_openId)
-        print(type(user))
+    if not p_openId:
+        return json.dumps({'ERRORCODE':'0003'})#输入有误
 
-        msgs = []
-        for msg in user:
-            msgs.append(msg)
-
-        if len(msgs)<1:
-            return json.dumps({'ERRORCODE':'0004'})#用户不存在
+    # if p_openId.strip()=='':
+    #     return json.dumps({'ERRORCODE': '0002'})  #输入不能为空
 
 
+    #goods = Goods().query.get(goods_id=p_id)
+    user = db.session.query(User).filter_by(openid=p_openId)
+    print(type(user))
 
-        return json.dumps({'uid':msgs[0].uid,'ERRORCODE':'0001'})#登录成功
+    msgs = []
+    for msg in user:
+        msgs.append(msg)
 
-    return ''
+    if len(msgs)<1:
+        return json.dumps({'ERRORCODE':'0004'})#用户不存在
+
+
+
+    return json.dumps({'uid':msgs[0].uid,'ERRORCODE':'0001'})#登录成功
+
+
+
 
 
 
